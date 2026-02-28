@@ -102,15 +102,13 @@ $n_{1}$個のデータの平均とデータ数（$n_{1}$）を保存しておけ
 
 同様に、分散共分散行列の更新には次の式を用いています。
 
-ここで、$\mathbf{d}_1 = \boldsymbol{\mu}_{n_1} - \boldsymbol{\mu}$、$\mathbf{d}_2 = \boldsymbol{\mu}_{n_2} - \boldsymbol{\mu}$ と置いています。
+ここで、$`\mathbf{d}_1 = \boldsymbol{\mu}_{n_1} - \boldsymbol{\mu}`$、$`\mathbf{d}_2 = \boldsymbol{\mu}_{n_2} - \boldsymbol{\mu}`$ と置いています。
 
 ```math
 \begin{aligned}
 \mathrm{Cov}_n &= \frac{1}{n - 1} \sum_{i=1}^{n} (\mathbf{x}_i - \boldsymbol{\mu})(\mathbf{x}_i - \boldsymbol{\mu})^{T} \\
-&= \frac{1}{n - 1} \Bigg[
-\sum_{i=1}^{n_1}(\mathbf{x}_i - \boldsymbol{\mu}_{n_1} + \mathbf{d}_1)(\mathbf{x}_i - \boldsymbol{\mu}_{n_1} + \mathbf{d}_1)^{T}
-+ \sum_{i=1}^{n_2}(\mathbf{x}_i - \boldsymbol{\mu}_{n_2} + \mathbf{d}_2)(\mathbf{x}_i - \boldsymbol{\mu}_{n_2} + \mathbf{d}_2)^{T}
-\Bigg]\\
+&=\frac{1}{n - 1} \Bigg[\sum_{i=1}^{n_{1}}(\bm{x}_{i} - \bm{\mu}_{n_{1}} +\bm{\mu}_{n_{1}} - \bm{\mu})(\bm{x}_{i} - \bm{\mu}_{n_{1}} +\bm{\mu}_{n_{1}} - \bm{\mu}) ^{T} + \sum_{i=1}^{n_{2}}(\bm{x}_{i} - \bm{\mu}_{n_{2}} +\bm{\mu}_{n_{2}} - \bm{\mu})(\bm{x}_{i} - \bm{\mu}_{n_{2}} +\bm{\mu}_{n_{2}} - \bm{\mu}) ^{T}\Bigg]\\
+
 &= \frac{1}{n - 1} \Bigg[
 \sum_{i=1}^{n_1} \Big((\mathbf{x}_i - \boldsymbol{\mu}_{n_1})(\mathbf{x}_i - \boldsymbol{\mu}_{n_1})^{T}
 + (\mathbf{x}_i - \boldsymbol{\mu}_{n_1})\mathbf{d}_1^{T}
