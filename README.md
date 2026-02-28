@@ -112,3 +112,18 @@ $n_{1}$個のデータの平均とデータ数（$n_{1}$）を保存しておけ
 &= \frac{1}{n - 1}\left((n_1 - 1)\mathrm{Cov}_{n_1} + n_1\mathbf{d}_1\mathbf{d}_1^{T} + (n_2 - 1)\mathrm{Cov}_{n_2} + n_2\mathbf{d}_2\mathbf{d}_2^{T}\right)
 \end{aligned}
 ```
+
+```math
+
+\begin{aligned}
+&= \frac{1}{n - 1} \Bigg[
+\sum_{i=1}^{n_1} \left((\mathbf{x}_i - \boldsymbol{\mu}_{n_1})(\mathbf{x}_i - \boldsymbol{\mu}_{n_1})^{T}
++2 (\mathbf{x}_i - \boldsymbol{\mu}_{n_1})\mathbf{d}_1^{T}
++ \mathbf{d}_1\mathbf{d}_1^{T}\right)\\
+&\qquad\qquad +
+\sum_{i=1}^{n_2} \left((\mathbf{x}_i - \boldsymbol{\mu}_{n_2})(\mathbf{x}_i - \boldsymbol{\mu}_{n_2})^{T}
++2 (\mathbf{x}_i - \boldsymbol{\mu}_{n_2})\mathbf{d}_2^{T}
++ \mathbf{d}_2\mathbf{d}_2^{T}\right)
+\Bigg]\\
+
+\end{aligned}
