@@ -89,25 +89,30 @@ PaDiMでは、正常画像の特徴から平均と分散共分散行列を計算
 
 平均の更新式には次の式を用いています。
 
-$$
-\begin{align*}
-\mu_{n} &= \frac{1}{n}\sum_{i=1}^{n} x_{i}\\
-&=\frac{1}{n}\left(\sum_{i=1}^{n_{1}} x_{i} + \sum_{i=1}^{n_{2}}x_{i}\right) && \text{ただし}\quad n=n_{1} + n_{2}\\
-&=\frac{1}{n}\left(n_{1} \times \mu_{n_{1}} + n_{2}\times \mu_{n_{2}}\right)
-\end{align*}
-$$
+```math
+\begin{aligned}
+\mu_n &= \frac{1}{n}\sum_{i=1}^{n} x_i \\
+&= \frac{1}{n}\left(\sum_{i=1}^{n_1} x_i + \sum_{i=1}^{n_2} x_i\right), \quad n = n_1 + n_2 \\
+&= \frac{1}{n}\left(n_1\mu_{n_1} + n_2\mu_{n_2}\right)
+\end{aligned}
+```
+
 こうすることで、$n$個のデータの平均を求める際に、$n$個すべてのデータを保持しておく必要がなくなります。
 $n_{1}$個のデータの平均とデータ数（$n_{1}$）を保存しておけば、次の$n_{2}$個のデータの和を計算することで、$n$個のデータの平均を求められます。
 
 同様に、分散共分散行列の更新には次の式を用いています。
 
-$$
-\begin{align*}
-Cov_n &= \frac{1}{n - 1} \sum_{i=1}^{n} (\bm{x}_{i} - \bm{\mu})(\bm{x}_{i} - \bm{\mu})^{T}\\
-&=\frac{1}{n - 1} \left(\sum_{i=1}^{n_{1}}(\bm{x}_{i} - \bm{\mu}_{n_{1}} +\bm{\mu}_{n_{1}} - \bm{\mu})(\bm{x}_{i} - \bm{\mu}_{n_{1}} +\bm{\mu}_{n_{1}} - \bm{\mu}) ^{T} + \sum_{i=1}^{n_{2}}(\bm{x}_{i} - \bm{\mu}_{n_{2}} +\bm{\mu}_{n_{2}} - \bm{\mu})(\bm{x}_{i} - \bm{\mu}_{n_{2}} +\bm{\mu}_{n_{2}} - \bm{\mu}) ^{T}\right)\\
-&\text{ここで、$\bm{d}_{1} = \bm{\mu}_{n_{1}} - \bm{\mu}, \bm{d}_{2} =  \bm{\mu}_{n_{2}} - \bm{\mu}$と置く。}\\
-&=\frac{1}{n - 1} \left(\sum_{i=1}^{n_{1}}\left[(\bm{x}_{i} - \bm{\mu}_{n_{1}})(\bm{x}_{i} - \bm{\mu}_{n_{1}})^{T} + (\bm{x}_{i} - \bm{\mu}_{n_{1}})\bm{d}_{1}^{T} + \bm{d}_{1}(\bm{x}_{i} - \bm{\mu}_{n_{1}})^{T} + \bm{d}_{1}\bm{d}_{1}^{T}\right] \right.\\
-& \qquad+ \left.\sum_{i=1}^{n_{2}}\left[(\bm{x}_{i} - \bm{\mu}_{n_{2}})(\bm{x}_{i} - \bm{\mu}_{n_{2}})^{T} + (\bm{x}_{i} - \bm{\mu}_{n_{2}})\bm{d}_{2}^{T} + \bm{d}_{2}(\bm{x}_{i} - \bm{\mu}_{n_{2}})^{T} + \bm{d}_{2}\bm{d}_{2}^{T}\right]\right)\\
-&=\frac{1}{n - 1}\left((n_{1} - 1)Cov_{n_{1}} + n_{1}\bm{d}_{1}\bm{d}_{1}^{T} + (n_{2} - 1)Cov_{n_{2}} + n_{2}\bm{d}_{2}\bm{d}_{2}^{T}\right)
-\end{align*}
-$$
+ここで、$\mathbf{d}_1 = \boldsymbol{\mu}_{n_1} - \boldsymbol{\mu}$、$\mathbf{d}_2 = \boldsymbol{\mu}_{n_2} - \boldsymbol{\mu}$ と置きます。
+
+```math
+\begin{aligned}
+\mathrm{Cov}_n &= \frac{1}{n - 1} \sum_{i=1}^{n} (\mathbf{x}_i - \boldsymbol{\mu})(\mathbf{x}_i - \boldsymbol{\mu})^{T} \\
+&= \frac{1}{n - 1} \Bigg(\sum_{i=1}^{n_1}(\mathbf{x}_i - \boldsymbol{\mu}_{n_1} + \boldsymbol{\mu}_{n_1} - \boldsymbol{\mu})(\mathbf{x}_i - \boldsymbol{\mu}_{n_1} + \boldsymbol{\mu}_{n_1} - \boldsymbol{\mu})^{T} \\
+&\qquad\qquad + \sum_{i=1}^{n_2}(\mathbf{x}_i - \boldsymbol{\mu}_{n_2} + \boldsymbol{\mu}_{n_2} - \boldsymbol{\mu})(\mathbf{x}_i - \boldsymbol{\mu}_{n_2} + \boldsymbol{\mu}_{n_2} - \boldsymbol{\mu})^{T}\Bigg) \\
+&= \frac{1}{n - 1} \Bigg(\sum_{i=1}^{n_1}\Big[(\mathbf{x}_i - \boldsymbol{\mu}_{n_1})(\mathbf{x}_i - \boldsymbol{\mu}_{n_1})^{T} + (\mathbf{x}_i - \boldsymbol{\mu}_{n_1})\mathbf{d}_1^{T} \\
+&\qquad\qquad + \mathbf{d}_1(\mathbf{x}_i - \boldsymbol{\mu}_{n_1})^{T} + \mathbf{d}_1\mathbf{d}_1^{T}\Big] \\
+&\qquad\qquad + \sum_{i=1}^{n_2}\Big[(\mathbf{x}_i - \boldsymbol{\mu}_{n_2})(\mathbf{x}_i - \boldsymbol{\mu}_{n_2})^{T} + (\mathbf{x}_i - \boldsymbol{\mu}_{n_2})\mathbf{d}_2^{T} \\
+&\qquad\qquad + \mathbf{d}_2(\mathbf{x}_i - \boldsymbol{\mu}_{n_2})^{T} + \mathbf{d}_2\mathbf{d}_2^{T}\Big]\Bigg) \\
+&= \frac{1}{n - 1}\left((n_1 - 1)\mathrm{Cov}_{n_1} + n_1\mathbf{d}_1\mathbf{d}_1^{T} + (n_2 - 1)\mathrm{Cov}_{n_2} + n_2\mathbf{d}_2\mathbf{d}_2^{T}\right)
+\end{aligned}
+```
