@@ -109,20 +109,17 @@ $n_{1}$個のデータの平均とデータ数（$n_{1}$）を保存しておけ
 \mathrm{Cov}_n &= \frac{1}{n - 1} \sum_{i=1}^{n} (\mathbf{x}_i - \boldsymbol{\mu})(\mathbf{x}_i - \boldsymbol{\mu})^{T} \\
 &=\frac{1}{n - 1} \Bigg[\sum_{i=1}^{n_{1}}(\bm{x}_{i} - \bm{\mu}_{n_{1}} +\bm{\mu}_{n_{1}} - \bm{\mu})(\bm{x}_{i} - \bm{\mu}_{n_{1}} +\bm{\mu}_{n_{1}} - \bm{\mu}) ^{T} \\
 &\qquad\qquad+ \sum_{i=1}^{n_{2}}(\bm{x}_{i} - \bm{\mu}_{n_{2}} +\bm{\mu}_{n_{2}} - \bm{\mu})(\bm{x}_{i} - \bm{\mu}_{n_{2}} +\bm{\mu}_{n_{2}} - \bm{\mu}) ^{T}\Bigg]\\
-
 &= \frac{1}{n - 1} \Bigg[
 \sum_{i=1}^{n_1} \Big((\mathbf{x}_i - \boldsymbol{\mu}_{n_1})(\mathbf{x}_i - \boldsymbol{\mu}_{n_1})^{T}
 + (\mathbf{x}_i - \boldsymbol{\mu}_{n_1})\mathbf{d}_1^{T}
 + \mathbf{d}_1(\mathbf{x}_i - \boldsymbol{\mu}_{n_1})^{T}
-+ \mathbf{d}_1\mathbf{d}_1^{T}\Big)
-\\
++ \mathbf{d}_1\mathbf{d}_1^{T}\Big)\\
 &\qquad\qquad +
 \sum_{i=1}^{n_2} \Big((\mathbf{x}_i - \boldsymbol{\mu}_{n_2})(\mathbf{x}_i - \boldsymbol{\mu}_{n_2})^{T}
 + (\mathbf{x}_i - \boldsymbol{\mu}_{n_2})\mathbf{d}_2^{T}
 + \mathbf{d}_2(\mathbf{x}_i - \boldsymbol{\mu}_{n_2})^{T}
 + \mathbf{d}_2\mathbf{d}_2^{T}\Big)
-\Bigg]
-\\
+\Bigg]\\
 &= \frac{1}{n - 1}\left((n_1 - 1)\mathrm{Cov}_{n_1} + n_1\mathbf{d}_1\mathbf{d}_1^{T} + (n_2 - 1)\mathrm{Cov}_{n_2} + n_2\mathbf{d}_2\mathbf{d}_2^{T}\right)
 \end{aligned}
 ```
